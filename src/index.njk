@@ -1,15 +1,22 @@
 ---
-title: Home
+title: 🐵
 layout: layouts/base.njk
 ---
+{% set postslist = collections.posts %}
 
 <div class="space-y-8">
 
-  <div>
-    <p>This is the project's home page. There is a little styling for demonstration purposes only.</p>
-    <p>The navigation might as well be a sidebar, or a floating menu. This template provides the structure, make it yours ✌️</p>
-  </div>
-
-
-  <a href="https://github.com/tomreinert/minimal-11ty-tailwind-starter" class="inline-block uppercase rounded bg-blue-600 hover:bg-blue-700 px-4 py-2 text-white text-sm">Download on github</a>
+  <ul>
+  {% for post in postslist %}
+    <li>
+      <strong>
+        <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+      </strong>
+      -
+      <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+      -
+      <span>{{ post.data.description }}</span>
+    </li>
+  {% endfor %}
+</ul>
 </div>
